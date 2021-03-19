@@ -1,0 +1,17 @@
+{
+    "name": "Translate to PDF",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "Translate to PDF"
+    },
+    "content_scripts":[
+        {
+            "js": ["content.js"],
+            "css": ["content.css"],
+            "matches": ["https://*.nicetranslator.com/*"]
+        }
+    ],
+    "permissions": ["tabs","activeTab", "downloads"]
+}

@@ -1,0 +1,22 @@
+.modal {
+  padding: 1rem;
+  width: 250px;
+}
+.modalHeader {
+  border-bottom: 0.5px solid #dadada;
+}
+.headingText {
+  font-family: monospace;
+  font-size: 22px;
+  font-weight: 400;
+  display: inline-block;
+}
+.vNumber {
+  color: #444;
+  font-size: 18px;
+  display: inline-block;
+}
+.btnWrapper {
+  padding-top: 1rem;
+  text-align: center;
+}
