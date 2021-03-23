@@ -55,10 +55,18 @@ window.onload = function () {
     chrome.tabs.query(
       { active: true, windowId: currentWindow.id },
       function (activeTabs) {
-        chrome.tabs.executeScript(activeTabs[0].id, {
-          file: "content.js",
-          allFrames: true,
-        });
+        console.log(`current url: ${activeTabs[0].url}`);
+        if(activeTabs[0].url === 'https://nicetranslator.com/'){
+          console.log('url matches')
+          document.getElementById("download").disabled = false;
+          chrome.tabs.executeScript(activeTabs[0].id, {
+            file: "content.js",
+            allFrames: true,
+          });
+        } else {
+          document.getElementById("download").disabled = true;
+          console.log('url does not match')
+        }
       }
     );
   });
