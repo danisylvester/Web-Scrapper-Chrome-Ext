@@ -1,11 +1,13 @@
 let elements = [];
 let fileName = '';
+let inputValue = '';
 
 // Listening for message from content file
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   fileName = request[0].value;
+  inputValue = `Source: "${request[1].value}"`;
 
-  for (let i = 1; i < request.length; i++) {
+  for (let i = 2; i < request.length; i++) {
     elements.push({
       key: request[i].key,
       value: request[i].value,
@@ -38,7 +40,7 @@ function downloadTranslations() {
   document.body.appendChild(a);
   a.style = 'display: none';
   
-  let blob = new Blob([formatResult], { type: "text/plain" });
+  let blob = new Blob([inputValue, formatResult], { type: "text/plain" });
   let url = URL.createObjectURL(blob);
 
   a.href = url;
