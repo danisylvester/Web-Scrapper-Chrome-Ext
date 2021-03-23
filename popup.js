@@ -1,25 +1,22 @@
 let elements = [];
+let fileName = '';
 
 // Listening for message from content file
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  console.log(request);
+  fileName = request[0].value;
 
-  for (let i = 0; i < request.length; i++) {
+  for (let i = 1; i < request.length; i++) {
     elements.push({
       key: request[i].key,
       value: request[i].value,
     });
-    console.log(elements[i]);
   }
   sendResponse(request);
 });
 
-// Converting elements array to text and downloading text file to user's computer
-function downloadTranslations() {
-  console.log(`elements check ${elements}`);
-
-  let result = JSON.stringify(elements, null, 1);
-  let formatResult = result
+// Format blob
+function formatTranslations(el) {
+  return el
     .replace("[", "")
     .replace(/{/g, "")
     .replace(/}/g, "")
@@ -28,20 +25,29 @@ function downloadTranslations() {
     .replace(/,/g, "")
     .replace(/key/g, "Language")
     .replace(/value/g, "Translation");
-
-  console.log(formatResult);
-
-  let blob = new Blob([formatResult], { type: "text/plain" });
-
-  console.log(blob);
-
-  let url = URL.createObjectURL(blob);
-
-  chrome.downloads.download({
-    url: url,
-  });
 }
 
+// Converting elements array to text and downloading text file to user's computer
+function downloadTranslations() {
+  console.log(`el check in dwnload func ${elements}`);
+
+  let result = JSON.stringify(elements, null, 1);
+  let formatResult = formatTranslations(result);
+
+  let a = document.createElement('a');
+  document.body.appendChild(a);
+  a.style = 'display: none';
+  
+  let blob = new Blob([formatResult], { type: "text/plain" });
+  let url = URL.createObjectURL(blob);
+
+  a.href = url;
+  a.download = fileName;
+  a.click();
+  window.URL.revokeObjectURL(url);
+}
+
+// Grab modal download button and execute content.js file on load.
 window.onload = function () {
   document.getElementById("download").onclick = downloadTranslations;
 
