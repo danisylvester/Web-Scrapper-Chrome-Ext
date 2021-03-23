@@ -1,7 +1,7 @@
 {
-    "name": "Translate to PDF",
-    "description": "Download your translations as a pdf file.",
-    "version": "0.1",
+    "name": "Polyglot Translator",
+    "description": "Download your translations as a text file.",
+    "version": "1.0",
     "permissions": [
       "downloads", 
       "<all_urls>"
@@ -10,4 +10,4 @@
       "default_popup": "popup.html"
     },
     "manifest_version": 2
-  }
+}
