@@ -1,6 +1,6 @@
 .modal {
   padding: 1rem;
-  width: 250px;
+  width: 265px;
 }
 .modalHeader {
   border-bottom: 0.5px solid #dadada;
@@ -15,8 +15,36 @@
   color: #444;
   font-size: 18px;
   display: inline-block;
+  margin-left: 5px;
 }
 .btnWrapper {
   padding-top: 1rem;
   text-align: center;
+}
+.btnLaunch, #download{
+  color: white; 
+  border-radius: 3px;
+  padding: 5px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-weight: 700;
+  background-color:#3369ff;
+} 
+.btnLaunch:hover, #download:hover{
+  background-color: #668FFF;
+}
+#download:disabled{
+  background-color: #668FFF;
+  cursor: not-allowed;
+}
+.btnLaunch {
+  width: 88px;
+  margin-right: 15px;
+}
+#launch{
+  text-decoration: none;
+  color: white;
+}
+#download{
+  width: 88px;
 }
