@@ -1,19 +1,17 @@
-// Grabbing input value for our download title and trimming if more than 5 words
+// Grabbing input value and trimming for file name
 var titleArr = document.getElementById("focusOnMe").value.split(' ');
-if(titleArr.length > 5){
-  var title = titleArr.slice(0,5).join(' ');
-} else{
-  var title = titleArr.join(' ');
-}
-console.log(title);
+var truncTitle = titleArr.slice(0,5).join(' ');
+console.log(`truncated: ${truncTitle}`);
+var title = titleArr.join(' ');
+console.log(`title: ${title}`);
 
 // Grabbing language labels and translations values from webpage
-var elements = document.getElementsByClassName("translation");
+var values = document.getElementsByClassName("translation");
 var labels = document.getElementsByTagName("label");
 // Declaring temp label and value arrays and final translation arr
-var translationLabels = [];
-var translationValues = [];
-var translations = [{key: 'Original', value: title}];
+var labelsArr = [];
+var valuesArr = [];
+var translations = [{key: 'truncInput', value: truncTitle}, {key: 'inputValue', value: title}];
 
 // Getting label value
 for (let i = 0; i < labels.length; i++) {
@@ -21,20 +19,20 @@ for (let i = 0; i < labels.length; i++) {
   let end = labelEl.length - 17; 
   let label = labelEl.substring(0, end);
 
-  translationLabels.push(label);
+  labelsArr.push(label);
 }
-console.log(translationLabels);
+console.log(labelsArr);
 
 // Getting translation value
-for (let i = 0; i < elements.length; i++) {
-  translationValues.push(elements[i].innerHTML);
+for (let i = 0; i < values.length; i++) {
+  valuesArr.push(values[i].innerHTML);
 }
 
 // Creating array of objects with translation label and value
-for (let i = 0; i <= translationLabels.length; i++) {
+for (let i = 0; i <= labelsArr.length; i++) {
   translations.push({
-    key: translationLabels[i],
-    value: translationValues[i],
+    key: labelsArr[i],
+    value: valuesArr[i],
   });
 }
 
