@@ -1,10 +1,9 @@
 // Grabbing input value for our download title and trimming if more than 5 words
 var titleArr = document.getElementById("focusOnMe").value.split(' ');
 if(titleArr.length > 5){
-  var title = titleArr.slice(0,5).join().replace(/,/g,' ');
-  title += '...'
+  var title = titleArr.slice(0,5).join(' ');
 } else{
-  var title = titleArr.join().replace(/,/g, ' ');
+  var title = titleArr.join(' ');
 }
 console.log(title);
 
